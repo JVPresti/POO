@@ -8,9 +8,25 @@ using std::cout;
 using std::endl;
 using std::cin;
 
+//Funcion que crea un objeto de clase persona en memoria estatica y otro en memoria dinamica
+void Foo() {
+    Persona personaLocal("Jilvherto", 15);
+    personaLocal.saludar();
+    Persona* personaDinamica = new Persona("AMLO", 72);
+    personaDinamica->saludar();
+    if (true) {
+        Persona otra("Juaquin", 45);
+        otra.hacerReir(rand());
+    }
+}
+
+
 int main()
 {
     srand(time(NULL));
+
+    Foo(); //Llamamos a la funcion Foo que crea un objeto de clase persona en memoria estatica y otro en memoria dinamica
+
     //Creamos un par de objetos de clase persona
     //Existen 2 formas de crear un objeto
     //Estatica, el objeto se crea en memoria estatica en el stack del programa
@@ -38,7 +54,8 @@ int main()
     Persona tercerPersona("Maria de todos los angeles", 22);
     tercerPersona.saludar();
 
-  
+
+    //tercerPersona.liberar();
     delete otraPersona; //Eliminamos el objeto de la memoria dinamica
 
 }
