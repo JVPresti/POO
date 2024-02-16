@@ -12,12 +12,14 @@ protected:
 	//char name[30];
 	char* name; //Con memoria dinamica
 
-	void reir();
-	void comer();
+	//Un metodo const no puede modificar los atributos de la clase
+
+	void reir() const;
+	void comer() const;
 	
 public:
-	void saludar();
-	void hacerReir(int motivo);
+	void saludar() const;
+	void hacerReir(int motivo) const;
 	void liberar();
 	
 	//Los objetos pueden tener constructores, que son funciones que se ejecutan automaticamente cuando el objeto es creado
@@ -30,6 +32,21 @@ public:
 
 	//Destructor
 	~Persona();
+
+	//Existen metodos para modificar y acceder atributos que estan protedigos del mundo exterior
+	//Estos metodos son llamados setters para modificar, getters para acceder
+	//El nombre de los metodos usulamente comienzan con get o set, seguido del nombre del atributo
+	char* getName() const;
+	void setName(const char* newName);
+
+	//Las funciones pueden ser implementadas la momento de ser declardas. Este tipo de implementacion se llama implementacion inline. 
+	//Si se utiliza se recomienda que sea con fucnoones que tengan poco codigo
+
+	int getEdad() const;
+	void setEdad(int newEdad) {
+		edad = (newEdad > 0) ? newEdad : edad;
+	};
+
 
 	//En c++ podemos usar el mismo nombre para diferentes funciones, siempre y cuando los parametros sean diferentes
 	//Ciamdp implementamos funciones de este tipo, se le llama sobrecarga de funciones
