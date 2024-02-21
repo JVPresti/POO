@@ -1,19 +1,20 @@
 #pragma once
 class CuentaDeCheques {
 protected:
-	char* nombreCliente;
 	char* fechaUltimaTransaccion;
 	int numeroCuenta;
-
-
+	double saldo;
+	
 
 public:
-	double saldo;
+	char* nombreCliente;
 	CuentaDeCheques(const char* name, int number, const char* fechax);
+	CuentaDeCheques();
 	~CuentaDeCheques();
 
 	double depositar(double cantidad);
-	double retirar(double cantidad);
+	double retirar(double cantidad, CuentaDeCheques* persona);
 	double transferir(double cantidad, CuentaDeCheques* cuentaDestino);
+	void preguntarSaldo(CuentaDeCheques* persona);
 
 };
