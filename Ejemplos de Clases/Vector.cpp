@@ -66,6 +66,19 @@ Vector Vector::operator+(Vector v2){
 	return r;
 }
 
+double Vector::GetMagnitud(){
+	return sqrt(x*x + y*y + z*z);
+}
+
+Vector Vector::GetUnitVector(){
+	double m = GetMagnitud();
+	Vector r;
+	r.x = x / m;
+	r.y = y / m;
+	r.z = z / m;
+	return r;
+}
+
 //Convierte la informacion a cadena
 string Vector::toString(){
 	//char cad[128];
