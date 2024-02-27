@@ -31,7 +31,8 @@ public:
 	Vector operator*(double s);
 	Vector operator+(Vector v2);
 
-
+	double GetMagnitud();
+	Vector GetUnitVector();
 
 };
 // Cuando el operador no es miemhro de la clase se deben reibir los dos operandos como parametro
