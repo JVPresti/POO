@@ -1,6 +1,7 @@
 #include <iostream>
 #include <stack>
 #include <string>
+#include <queue>
 #include "Persona.h"
 
 using std::cout;
@@ -8,6 +9,7 @@ using std::endl;
 using std::cin;
 using std::stack;
 using std::string;
+using namespace std;
 
 
 
@@ -81,9 +83,33 @@ void stackTest3() {
 	}
 }
 
+//Cola de enteros
+void queueTest() {
+	queue<int> cola;
+	int n;
+	while (true) {
+		cout << "Dame un numero (-1 para terminar): ";
+		cin >> n;
+		if (n == -1) break;
+		cola.push(n);
+	}
+	cout << "Numero de elementos en la cola: " << cola.size() << endl;
+	cout << "Ultmo elemento de la cola: " << cola.back() << endl;
+	cout << "Primer elemento de la cola: " << cola.front() << endl;
+
+	cout << "Elementos de la cola: ";
+	while (!cola.empty()) {
+		cout << cola.front() << ", ";
+		cola.pop();
+	}
+	cout << endl;
+
+}
+
 int main(){
 
-	stackTest3();
-
-   
+	//stackTest();
+	//stackTest2();
+	//stackTest3();
+	queueTest();
 }
