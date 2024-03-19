@@ -1,9 +1,11 @@
+#define _CRT_SECURE_NO_WARNINGS
 #include <iostream>
 #include <stack>
 #include <string>
 #include <queue>
 #include "Persona.h"
 #include <conio.h>
+#include "Estudiante.h"
 
 using std::cout;
 using std::endl;
@@ -125,16 +127,59 @@ void queueTest2() {
 		}
 		alt = !alt;
 	}
-	cout << "Numero de elementos en la cola: " << cola.size() << _getch();
-	cout << "Elemento al inicio de la cola: " << cola.front() << _getch();
-	cout << "Elemento al final de la cola: " << cola.back() << _getch();
+	cout << "Numero de elementos en la cola: " << cola.size() << endl;
+	_getch();
+	cout << "Elemento al inicio de la cola: " << cola.front() << endl;
+	_getch();
+	cout << "Elemento al final de la cola: " << cola.back() << endl;
+	_getch();
 	
 	cout << "Elementos de la cola: ";
 	while (!cola.empty()) {
 		cout << cola.front() << ", ";
 		cola.pop_front();
 	}
+}
 
+void pqueueTest() {
+	//Una cola de prioridad utiliaz la prioridad de los elementos para dar siempre acecso al que tiene mayor prioridad.
+	//Internamente utiliza un arbol balanceado a la izquierda para mantener en la raiz del arbol el elemento con mayor prioridad
+	priority_queue<int> cola;
+	int n;
+	while (true) {
+		cout << "Dame un numero (-1 para terminar): ";
+		cin >> n;
+		if (n == -1) break;
+		cola.push(n);
+	}
+	cout << "Cantidad de elementos en la cola: " << cola.size() << endl;
+	_getch();
+	cout << "Elemento con mayor prioridad: " << cola.top() << endl;
+	_getch();
+	cout << "Elementos de la cola: ";
+	while (!cola.empty()) {
+		cout << cola.top() << ", ";
+		cola.pop();
+	}
+}
+
+void pqueueTest2() {
+	priority_queue<Estudiante> cola;
+	//Agregamos varios estudiantes
+	cola.push(Estudiante(456321, "Espergecia Perez", 3456));
+	cola.push({567891, "Abudemio McGregor", 4231});
+	Estudiante e;
+	e = { 999666, "Sempronio Gomez", 7234 };
+	cola.push(e);
+	cola.emplace(666999, "Juan Torres", 3245);
+
+	cout << "Cantidad de estudiantes en la cola: " << cola.size() << endl;
+	cout << "Estudiante con mayor prioridad / puntuacion: " << cola.top() << endl;
+	cout << "Estudiantes en la cola: " << endl;
+	while(!cola.empty()){
+		cout << cola.top() << endl;
+		cola.pop();
+	}
 
 }
 
@@ -144,5 +189,7 @@ int main(){
 	//stackTest2();
 	//stackTest3();
 	//queueTest();
-	queueTest2();
+	//queueTest2();
+	//pqueueTest();
+	pqueueTest2();
 }
