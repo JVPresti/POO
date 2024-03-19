@@ -3,6 +3,7 @@
 #include <string>
 #include <queue>
 #include "Persona.h"
+#include <conio.h>
 
 using std::cout;
 using std::endl;
@@ -106,10 +107,42 @@ void queueTest() {
 
 }
 
+void queueTest2() {
+	//deque es una cola doble. En la cola doble, se pueden agregar elementos al incio o al final de la cola. Tambien se pueden quitar del inicio o del final
+	deque<int> cola;
+	int n;
+	bool  alt = true; //Para alternar entre agregar al inicio o al final
+	while (true) {
+		cout << "Dame un numero (-1 para terminar): ";
+		cin >> n;
+		if (n == -1) break;
+		
+		if (alt) {
+			cola.push_back(n);
+		}
+		else {
+			cola.push_front(n);
+		}
+		alt = !alt;
+	}
+	cout << "Numero de elementos en la cola: " << cola.size() << _getch();
+	cout << "Elemento al inicio de la cola: " << cola.front() << _getch();
+	cout << "Elemento al final de la cola: " << cola.back() << _getch();
+	
+	cout << "Elementos de la cola: ";
+	while (!cola.empty()) {
+		cout << cola.front() << ", ";
+		cola.pop_front();
+	}
+
+
+}
+
 int main(){
 
 	//stackTest();
 	//stackTest2();
 	//stackTest3();
-	queueTest();
+	//queueTest();
+	queueTest2();
 }
