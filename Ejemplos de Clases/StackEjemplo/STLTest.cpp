@@ -223,7 +223,7 @@ void vectorTest() {
 		cout << *it << ", ";
 		it++;
 	}
-
+	cout << endl;
 
 }
 
