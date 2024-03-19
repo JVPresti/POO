@@ -6,6 +6,7 @@
 #include "Persona.h"
 #include <conio.h>
 #include "Estudiante.h"
+#include <vector>
 
 using std::cout;
 using std::endl;
@@ -183,6 +184,50 @@ void pqueueTest2() {
 
 }
 
+void vectorTest() {
+	//Un vector es un contenedor secuencial en el que los elementos estan almacenados de forma contigua en memoria.
+	//De forma similar a un arreglo. El vector puede ser utilizado en sustitucion de un arreglo, con la diferencia de que el vector tiene tamaño dinamico
+	vector<int> v(5);
+	for (int i = 0; i < 5; i++) {
+		//Los elementos del vector se pueden acceder por posicion utilizando el operador []
+		v[i] = rand() % 100;
+	}
+	cout << "Elementos del vector: ";
+	for (int i = 0; i < v.size(); i++) {
+		cout << v[i] << ", ";
+	}
+	cout << endl;
+	v.resize(10); //Se modifica el tamaño del vector
+
+	//El vector es un contenedor que puede ser iterado con un for basado en rango
+	cout << "Elementos del vector: ";
+	for (int n : v) {
+		cout << n << ", ";
+	}
+	cout << endl;
+	//Si se necesita un espacio extra, se puede agregar un elemento nuevo al final del vector con push_back
+	v.push_back(rand() % 100);
+	cout << "Nuevo tamaño del vector: " << v.size() << endl;
+	cout << "Nuevo vector: ";
+	//Los contenedores secuenciales pueder ser recorridos por medio de un iterador
+	//Un iterador es un objeto que "apunta" a un elemento del contenedor. El iterador puede ser recorrido al siguiente elemento en la secuencia almacenada en el contendor.
+	//Los contenedores que soportan el uso de iteradores tienen el metood begin(), que devuelv un iterador al inicio de la secuancia
+	//Y end() que devuelve un iterador al final de la secuencia
+
+	vector<int>::iterator it;
+	//Obtenemos el iterador al inicio del vector con el metodo begin()
+	it=v.begin();
+	//Mientras el iterador no este en el fin de la secuencia, seguimos iterando
+	while (it != v.end()) {
+		//Para acceder al elemento al que apunta el iterador, se utiliza el operador de contenido *
+		cout << *it << ", ";
+		it++;
+	}
+
+
+}
+
+
 int main(){
 
 	//stackTest();
@@ -191,5 +236,6 @@ int main(){
 	//queueTest();
 	//queueTest2();
 	//pqueueTest();
-	pqueueTest2();
+	//pqueueTest2();
+	vectorTest();
 }
