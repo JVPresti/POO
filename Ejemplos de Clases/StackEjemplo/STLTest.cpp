@@ -7,6 +7,8 @@
 #include <conio.h>
 #include "Estudiante.h"
 #include <vector>
+#include <list>
+#include <forward_list>
 
 /*
 using std::cout;
@@ -252,9 +254,96 @@ void vectorTest() {
 		cout << n << ", ";
 	cout << endl;
 
+	//Eliminar un elemento
+	cout << "Dame un valor a eliminar: ";
+	cin >> x;
+	it = v.begin();
+	while (it != v.end() && (*it) != x)
+		it++;
+	if (it != v.end()) {
+		//Lo encontro, lo eliminamos
+		v.erase(it);
+		cout << "Vector actualizado: ";
+		for (int n : v)
+			cout << n << ", ";
+		cout << endl;
+	}
+	else {
+		cout << "El valor " << x << " no se encontro en el vector" << endl;
+	}
 
 }
 
+ostream& operator<<(ostream& out, list<int> l) {
+	out << "[ ";
+	for (auto it = l.begin(); it != l.end(); it++)
+		out << (*it) << " ";
+	out << "]";
+	return out;
+}
+
+void listTest() {
+	list<int> lista = { 7,3,8,1,99,2,666,20,80,3 };
+	lista.push_back(45);
+	lista.push_front(300);
+
+	cout << "Numero de elementos en la lista: " << lista.size() << endl;
+	cout << "Lista: " << lista << endl;
+	//No se pueden acceder a los elementos de la lista por indice
+	//Una lista puede ser ordenada
+	lista.sort();
+	cout << "Lista ordenada: " << lista << endl;
+
+	auto it = lista.begin();
+	it++;
+	it++;
+	it++;
+	cout << "Elemento en el iterador: " << (*it) << endl;
+	//La lista esta doblemente ligada
+	it--;
+	it--;
+	cout << "Elemento en la nueva posicion iterador: " << (*it) << endl;
+	//Se pueden insertar elementos y eliminarlos utilizando el iterador
+	lista.insert(it, 456);
+	cout << "Lista actualizada: " << lista << endl;
+	it++; it++;
+	it=lista.erase(it);
+	cout << "Lista actualizada (erase): " << lista << endl;
+	auto it2 = it;
+	it2++;
+	it2++;
+	it2++;
+	lista.erase(it, it2);
+	cout << "Lista actualizada (erase por rango): " << lista << endl;
+
+}
+
+ostream& operator<<(ostream& out, forward_list<int> l) {
+	out << "[ ";
+	for (auto it = l.begin(); it != l.end(); it++)
+		out << (*it) << " ";
+	out << "]";
+	return out;
+}
+
+void listTest2() {
+	forward_list<int> lista = { 3,5,8,15,21,66,99,666 };
+	lista.push_front(1);
+	cout << "Lista: " << lista << endl;
+	auto it = lista.begin();
+	it++;
+	it++;
+	it++;
+	//it--; es lista de liga simple, el interador solo se mueve hacia adelante
+	lista.insert_after(it, 7);
+	cout << "Lista actualizada: " << lista << endl;
+	lista.sort();
+	cout << "Lista ordenada: " << lista << endl;
+	it = lista.begin();
+	it++;
+	lista.erase_after(it);
+	cout << "Lista actualizada y con erase: " << lista << endl;
+}
 
 int main(){
 
@@ -265,5 +354,7 @@ int main(){
 	//queueTest2();
 	//pqueueTest();
 	//pqueueTest2();
-	vectorTest();
+	//vectorTest();
+	//listTest();
+	listTest2();
 }
