@@ -1,3 +1,4 @@
+//OnlyCodes
 #define _CRT_SECURE_NO_WARNINGS
 #include <iostream>
 #include <stack>
@@ -9,6 +10,7 @@
 #include <vector>
 #include <list>
 #include <forward_list>
+#include <map>
 
 /*
 using std::cout;
@@ -345,6 +347,61 @@ void listTest2() {
 	cout << "Lista actualizada y con erase: " << lista << endl;
 }
 
+void mapTest() {
+	//Un mapa es un conjunto de pares. Cada par consiste en una llave y un valor asociado. Se puede manejar como un arreglo asociativo.
+	//Los elementos en lugar de accederse por posicion, se acceden por llave.
+	//La plantilla del mapa tiene dos parametros: el tipo para la llave, y el tipo para el valor asociado.
+	map<string, int> inventario;
+	//Podemos acceder a los elementos por medio de su llave usando el operador de indice.
+	inventario["Libreta"] = 10;
+	inventario["Lapiz"] = 20;
+	inventario["Borrador"] = 5;
+	inventario["Sacapuntas"] = 666;
+
+	//Otra forma de agregar elementos es con el metodo insert
+	inventario.insert({ "Ligas", 100 });
+
+	//El mmapa es un conjunto de objetos de clase pair. El pair tienen los campos first y second. En el mapa firstse usa como llave, y second como valor.
+	//Imprimimos los elementos del mapa:
+	auto it = inventario.begin();
+	cout << "Elementos del mapa: " << endl;
+	while (it != inventario.end()) {
+		//El contenido en el iterdor es un objeto de tipo pair, que tiene los campos first y second.
+		cout << (*it).first << "->" << (*it).second << endl;
+		it++;
+	}
+	//Al acceder a un elemento por medio de la lalve, se devuelve una referencia al valor asociado. Podemos modificar el valor. De esta forma, podemos 
+	//modificar el valor
+	string producto;
+	int cantidad;
+	cout << "Que producto quieres comprar: "; 
+	getline(cin, producto);
+	cout << "Cuantos quieres comprar: ";
+	cin >> cantidad;
+	
+	//Si accedemos a un elemento con el operador de brackets, el mapa debe devolver un valor asociado. Si no existe lo crea automaticamente.
+	//Este no es un buen metodo para actualizar
+	//inventario[producto] = inventario[producto] - cantidad;
+	//Para actualizar debemos verificar que el elemento existe
+	it = inventario.find(producto); //find devuelve el iterador apuntando al elemento que buscado. Si no lo encuentra, el iterador devuelto es end()
+	if (it != inventario.end()) {
+		//inventario[producto] = inventario[producto] - cantidad;
+		if ((*it).second >= cantidad) {
+			(*it).second = (*it).second - cantidad;
+		}
+		else {
+			cout << "No hay suficiente cantidad de " << producto << endl;
+		}
+	}
+	else {
+		cout << "No contamos con el producto \"" << producto << "\" :(" << endl;
+	}
+	
+	cout << "Mapa actualizado: " << endl;
+	for (auto& p : inventario)
+		cout << p.first << " -> " << p.second << endl;
+}
+
 int main(){
 
 	//stackTest();
@@ -356,5 +413,9 @@ int main(){
 	//pqueueTest2();
 	//vectorTest();
 	//listTest();
-	listTest2();
+	//listTest2();
+	mapTest();
+
+
+
 }
