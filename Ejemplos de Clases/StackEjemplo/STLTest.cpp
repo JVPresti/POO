@@ -8,11 +8,12 @@
 #include "Estudiante.h"
 #include <vector>
 
+/*
 using std::cout;
 using std::endl;
 using std::cin;
 using std::stack;
-using std::string;
+using std::string;*/
 using namespace std;
 
 
@@ -224,6 +225,33 @@ void vectorTest() {
 		it++;
 	}
 	cout << endl;
+
+	//Le podemos asignar valores al vector por medio de un conjunto definido con llaves
+	v = { 2,3,4,5,8,10,20,99 };
+	cout << "Nuevo tamano del vector: " << v.size() << endl;
+	cout << "Elementos del vector: ";
+	for (it = v.begin(); it != v.end(); it++) //Usando iterador con ciclo for
+		cout << *it << ", ";
+	cout << endl;
+	//Se pueden agregar o elimnar elementos en posiciones intermedias del vector. para determinar posicion el elemento a eliminar
+	//O la posicion de insercion, se utiliza un iterador
+
+	int x;
+	cout << "Dame un valor para insertarlo en el vector: ";
+	cin >> x;
+
+	//Buscamos la posicion que le corresponde a la secuencia
+	it = v.begin();
+	while(it != v.end() && (*it) < x)
+		it++;
+
+	//Una vez que encontramos la posicion, insertamos el valor
+	v.insert(it, x);
+	cout << "Vector actualizado: ";
+	for(int n : v)
+		cout << n << ", ";
+	cout << endl;
+
 
 }
 
