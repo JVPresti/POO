@@ -24,8 +24,12 @@ void conexionesActivas() {
 }
 
 void configuracion() {
-    cout << "Pendiente..." << endl;
-    _getch();
+    Menu subMenu("Configuracion");
+    subMenu.agregar({ '1', "Subopcion 1", []() {cout << "Ejecutando subopcion 1" << endl; _getch();} });
+    subMenu.agregar({ '2', "Subopcion 2", []() {cout << "Ejecutando subopcion 2" << endl; _getch();} });
+    subMenu.agregar({ '3', "Subopcion 3", []() {cout << "Ejecutando subopcion 3" << endl; _getch();} });
+    subMenu.agregar({ '4', "Regresar", []() {cout << "Regresando" << endl; _getch();} });
+    subMenu.ejecutar();
 }
 
 int main(){
@@ -36,10 +40,7 @@ int main(){
     //elMenu.agregar({ '3', "Conexiones activas", conexionesActivas });
 	elMenu.agregar({ '3', "Configuracion", configuracion });
     elMenu.agregar({ '4', "Salir", []() {cout << "Saliendo..." << endl; } });
-    do {
-        system("cls");
-        elMenu.desplegar();
-    }while(elMenu.seleccionar() != '4');
+    elMenu.ejecutar();
 
         
 }
