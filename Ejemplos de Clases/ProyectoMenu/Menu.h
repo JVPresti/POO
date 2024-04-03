@@ -14,5 +14,9 @@ protected:
 
 public:
 	Menu(string titulo = "Menu");
+	void agregar(Opcion laOpcion);
+	void eliminar(char tecla);
+	void desplegar();
+	char seleccionar();
 };
 
