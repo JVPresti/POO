@@ -11,6 +11,7 @@ protected:
 	string titulo;
 	//Para manejar las multiples instancias de opcion en este menu, utilizaremos un mapa
 	map<char, Opcion> opciones;
+	char exitKey;
 
 public:
 	Menu(string titulo = "Menu");
@@ -18,5 +19,7 @@ public:
 	void eliminar(char tecla);
 	void desplegar();
 	char seleccionar();
+	void ejecutar();
+	void setExitKey(char ek) { exitKey = ek; };
 };
 
