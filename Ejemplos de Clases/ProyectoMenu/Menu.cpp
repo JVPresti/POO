@@ -10,8 +10,10 @@ Menu::Menu(string titulo){
 
 void Menu::agregar(Opcion laOpcion){
 	//Agregamos la opcion al mapa con el metodo insert
-	if(opciones.find(laOpcion.GetTecla()) == opciones.end())
-		opciones.insert({laOpcion.GetTecla(),laOpcion});
+	if (opciones.find(laOpcion.GetTecla()) == opciones.end()) {
+		opciones.insert({ laOpcion.GetTecla(),laOpcion });
+		exitKey = laOpcion.GetTecla();
+	}
 	else
 		throw "La tecla ya esta asignada a otra opcion";
 }
@@ -51,6 +53,13 @@ char Menu::seleccionar(){
 		}
 	}
 	return selec;
+}
+
+void Menu::ejecutar(){
+	do {
+		system("cls");
+		desplegar();
+	}while(seleccionar() != exitKey);
 }
 
 
